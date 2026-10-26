@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "Rol del usuario en la plataforma EcoRAEE",
+      "enum": [
+        "ciudadano",
+        "empresa",
+        "municipio",
+        "operador",
+        "administrador"
+      ],
+      "default": "ciudadano"
+    }
+  },
+  "required": [
+    "role"
+  ],
+  "name": "User",
+  "type": "object"
+}

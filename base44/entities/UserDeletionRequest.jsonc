@@ -1,0 +1,115 @@
+{
+  "name": "UserDeletionRequest",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "type": "string",
+      "title": "Motivo de la solicitud"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pendiente",
+        "Procesado",
+        "Rechazado"
+      ],
+      "default": "Pendiente",
+      "title": "Estado"
+    },
+    "user_email": {
+      "type": "string",
+      "title": "Email del usuario",
+      "format": "email"
+    },
+    "user_name": {
+      "type": "string",
+      "title": "Nombre del usuario"
+    }
+  },
+  "required": [
+    "reason"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "administrador"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "municipio"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "operador"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "administrador"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "municipio"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "operador"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "administrador"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "municipio"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "operador"
+          }
+        }
+      ]
+    }
+  }
+}

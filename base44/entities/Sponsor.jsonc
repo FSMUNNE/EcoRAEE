@@ -1,0 +1,111 @@
+{
+  "name": "Sponsor",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Nombre"
+    },
+    "logo_url": {
+      "type": "string",
+      "title": "Logo",
+      "format": "uri"
+    },
+    "website": {
+      "type": "string",
+      "title": "Sitio web",
+      "format": "uri"
+    },
+    "municipality": {
+      "type": "string",
+      "title": "Municipio"
+    },
+    "description": {
+      "type": "string",
+      "title": "Descripci\u00f3n"
+    },
+    "is_active": {
+      "type": "boolean",
+      "title": "Activo",
+      "default": true
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "administrador"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "municipio"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "operador"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "administrador"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "municipio"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "operador"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "administrador"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "municipio"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "operador"
+          }
+        }
+      ]
+    }
+  }
+}

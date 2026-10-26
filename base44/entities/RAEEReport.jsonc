@@ -1,0 +1,164 @@
+{
+  "name": "RAEEReport",
+  "type": "object",
+  "properties": {
+    "waste_type": {
+      "type": "string",
+      "title": "Tipo de residuo"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Peque\u00f1o Hogar",
+        "Grande Hogar",
+        "IT/Telecom",
+        "Iluminaci\u00f3n",
+        "Herramientas",
+        "Juguetes",
+        "M\u00e9dico",
+        "Otros"
+      ],
+      "title": "Categor\u00eda RAEE"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "Bajo",
+        "Medio",
+        "Alto",
+        "Cr\u00edtico"
+      ],
+      "title": "Nivel de riesgo"
+    },
+    "description": {
+      "type": "string",
+      "title": "Descripci\u00f3n"
+    },
+    "image_url": {
+      "type": "string",
+      "title": "Imagen",
+      "format": "uri"
+    },
+    "quantity": {
+      "type": "number",
+      "title": "Cantidad",
+      "default": 1
+    },
+    "address": {
+      "type": "string",
+      "title": "Direcci\u00f3n del reporte"
+    },
+    "clean_point_id": {
+      "type": "string",
+      "title": "Punto limpio asignado"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pendiente",
+        "En revisi\u00f3n",
+        "Asignado",
+        "Recolectado",
+        "Reciclado"
+      ],
+      "default": "Pendiente",
+      "title": "Estado"
+    },
+    "request_pickup": {
+      "type": "boolean",
+      "title": "Solicita retiro",
+      "default": false
+    }
+  },
+  "required": [
+    "waste_type",
+    "category",
+    "risk_level"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "administrador"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "municipio"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "operador"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "administrador"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "municipio"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "operador"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "administrador"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "municipio"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "operador"
+          }
+        }
+      ]
+    }
+  }
+}

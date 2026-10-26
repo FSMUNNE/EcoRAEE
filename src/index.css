@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 142 51% 30%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 199 89% 48%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 140 30% 96%;
+    --muted-foreground: 140 10% 40%;
+    --accent: 199 89% 94%;
+    --accent-foreground: 199 89% 30%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 140 20% 88%;
+    --input: 140 20% 88%;
+    --ring: 142 51% 30%;
+    --chart-1: 142 51% 30%;
+    --chart-2: 199 89% 48%;
+    --chart-3: 43 74% 55%;
+    --chart-4: 27 87% 60%;
+    --chart-5: 173 58% 39%;
+    --radius: 0.5rem;
+    --font-heading: ui-sans-serif, system-ui, sans-serif;
+    --font-body: ui-sans-serif, system-ui, sans-serif;
+    --font-display: ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 142 51% 42%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 199 89% 55%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 140 20% 16%;
+    --muted-foreground: 140 15% 65%;
+    --accent: 199 60% 22%;
+    --accent-foreground: 199 89% 90%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 140 20% 22%;
+    --input: 140 20% 22%;
+    --ring: 142 51% 50%;
+    --chart-1: 142 51% 45%;
+    --chart-2: 199 70% 55%;
+    --chart-3: 43 74% 60%;
+    --chart-4: 27 80% 60%;
+    --chart-5: 173 58% 50%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html,
+  body {
+    overscroll-behavior: none;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"],
+  article,
+  p,
+  .bg-card,
+  .bg-card h1,
+  .bg-card h2,
+  .bg-card h3,
+  .bg-card span {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+
+  .scroll-container {
+    overscroll-behavior: contain;
+  }
+}
+
+@layer utilities {
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+  .pb-safe {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 7rem);
+  }
+  @media (min-width: 1024px) {
+    .pb-safe {
+      padding-bottom: calc(env(safe-area-inset-bottom) + 2rem);
+    }
+  }
+}
+
+/* Leaflet: mantener el mapa por debajo del layer de modales/dialogs */
+.leaflet-pane { z-index: 1 !important; }
+.leaflet-tile-pane { z-index: 1 !important; }
+.leaflet-overlay-pane { z-index: 2 !important; }
+.leaflet-shadow-pane { z-index: 3 !important; }
+.leaflet-marker-pane { z-index: 4 !important; }
+.leaflet-popup-pane { z-index: 5 !important; }
+.leaflet-top,
+.leaflet-bottom { z-index: 6 !important; }
+.leaflet-control { z-index: 6 !important; }
